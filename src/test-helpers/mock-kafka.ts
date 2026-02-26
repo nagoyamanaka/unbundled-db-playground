@@ -71,35 +71,6 @@ export function createMockDebeziumEvent(params: {
 }
 
 /**
- * Kafka Consumer のモック
- */
-export function createMockKafkaConsumer() {
-  const mockConsumer: Partial<Consumer> = {
-    connect: vi.fn().mockResolvedValue(undefined),
-    disconnect: vi.fn().mockResolvedValue(undefined),
-    subscribe: vi.fn().mockResolvedValue(undefined),
-    run: vi.fn().mockResolvedValue(undefined),
-    stop: vi.fn().mockResolvedValue(undefined),
-    commitOffsets: vi.fn().mockResolvedValue(undefined),
-  };
-
-  return mockConsumer as Consumer;
-}
-
-/**
- * Kafka クライアントのモック
- */
-export function createMockKafka() {
-  const mockConsumer = createMockKafkaConsumer();
-
-  const mockKafka: Partial<Kafka> = {
-    consumer: vi.fn().mockReturnValue(mockConsumer),
-  };
-
-  return { mockKafka: mockKafka as Kafka, mockConsumer };
-}
-
-/**
  * DDT (Data-Driven Testing) 用のテストケース生成
  * 複数のDebeziumイベントパターンをテストするため
  */
