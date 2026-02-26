@@ -21,7 +21,7 @@ const kafka = new Kafka({
 
 const redis = new Redis({
   host: "localhost",
-  port: 6379,
+  port: 6380,
   retryStrategy: (times) => {
     const delay = Math.min(times * 50, 2000);
     return delay;

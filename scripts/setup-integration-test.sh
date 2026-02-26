@@ -16,15 +16,14 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # 1. Dockerコンテナの確認
-echo "📦 Step 1: Dockerコンテナの確認..."
-if ! docker compose ps | grep -q "running"; then
-    echo -e "${YELLOW}⚠️  Dockerコンテナが起動していません。起動します...${NC}"
-    docker compose up -d
-    echo "⏳ コンテナの起動を待機中（30秒）..."
-    sleep 30
-else
-    echo -e "${GREEN}✅ Dockerコンテナは起動しています${NC}"
-fi
+echo "📦 Step 1: Dockerコンテナのセットアップ..."
+echo "   前のコンテナをクリーンアップしています..."
+docker compose down --volumes || trueecho "   Dockerシステムをクリーンアップしています..."
+docker system prune -f --volumesecho -e "${YELLOW}⚠️  コンテナを起動します...${NC}"
+docker compose up -d
+echo "⏳ コンテナの起動を待機中（30秒）..."
+sleep 30
+echo -e "${GREEN}✅ Dockerコンテナが起動しました${NC}"
 
 # 2. Elasticsearchの確認
 echo ""

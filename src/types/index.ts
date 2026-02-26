@@ -8,9 +8,11 @@ export interface Post {
   updated_at: Date;
 }
 
+type SnapshotFlag = "true" | "false" | "last";
+
 // Debezium CDC Event Structure
 export interface DebeziumChangeEvent {
-  schema: any;
+  schema?: unknown;
   payload: {
     before: Post | null;
     after: Post | null;
@@ -19,17 +21,17 @@ export interface DebeziumChangeEvent {
       connector: string;
       name: string;
       ts_ms: number;
-      snapshot: string;
+      snapshot: SnapshotFlag;
       db: string;
       schema: string;
       table: string;
-      txId: number;
-      lsn: number;
+      lsn: string | number;
+      txId: string | number;
       xmin: number | null;
     };
     op: "c" | "u" | "d" | "r"; // create, update, delete, read(snapshot)
     ts_ms: number;
-    transaction: {
+    transaction?: {
       id: string;
       total_order: number;
       data_collection_order: number;

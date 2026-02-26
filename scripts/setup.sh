@@ -26,6 +26,10 @@ fi
 # 2. Dockerコンテナの起動
 echo ""
 echo "🐳 Step 2: Dockerコンテナの起動..."
+echo "   前のコンテナをクリーンアップしています..."
+docker compose down --volumes || true
+echo "   Dockerシステムをクリーンアップしています..."
+docker system prune -f --volumes
 docker compose up -d
 
 echo "⏳ コンテナの起動を待機中（30秒）..."

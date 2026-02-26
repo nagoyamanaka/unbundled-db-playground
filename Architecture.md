@@ -289,3 +289,5 @@ PostgreSQL → Debezium → Kafka → Consumers → Datastores
 - [ ] PostgreSQL Read Replica 追加
 - [ ] Monitoring（Prometheus + Grafana）
 - [ ] 分散トレーシング（Jaeger）
+- [ ] OIDCのSSO認証\*パスキー
+- [ ] DDD適用

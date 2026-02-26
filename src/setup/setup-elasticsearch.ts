@@ -25,10 +25,16 @@ async function setupElasticsearch() {
     console.log(`📝 Creating index: ${indexName}`);
     await client.indices.create({
       index: indexName,
+      // body: Elasticsearchに送る設定書の本文
+      // インデックスを作成する際のすべての構成情報(設定や構造)
       body: {
         settings: {
           number_of_shards: 1,
           number_of_replicas: 0,
+          // analysis:テキストをどのように分解して、検索しやすくするかというルール
+          // analysisの設定で分かち書きや正規化をする
+          // 分かち書き: 文を「ElasticSearch」「を」「学ぶ」のように分解
+          // 正規化: 大文字を
           analysis: {
             analyzer: {
               // 日本語対応のアナライザー（将来的に）
@@ -38,6 +44,7 @@ async function setupElasticsearch() {
             },
           },
         },
+        // bodyの一部。RDBでいうテーブル定義書(スキーマ)
         mappings: {
           properties: {
             id: {
@@ -71,7 +78,7 @@ async function setupElasticsearch() {
 
     console.log("✅ Index created successfully!");
 
-    // マッピング確認
+    // マッピングを取得して内容を確認
     const mapping = await client.indices.getMapping({ index: indexName });
     console.log("\n📋 Index Mapping:");
     console.log(JSON.stringify(mapping, null, 2));

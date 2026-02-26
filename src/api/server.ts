@@ -28,7 +28,7 @@ const pg = new Pool({
 // Redis接続
 const redis = new Redis({
   host: "localhost",
-  port: 6379,
+  port: 6380,
 });
 
 // Elasticsearch接続

@@ -96,7 +96,7 @@ describe("DDT Integration Test", () => {
 
     redis = new Redis({
       host: "localhost",
-      port: 6379,
+      port: 6380,
     });
 
     es = new Client({ node: "http://localhost:9200" });

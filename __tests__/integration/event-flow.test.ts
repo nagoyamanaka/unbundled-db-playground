@@ -38,7 +38,7 @@ describe("Event Flow Integration Test", () => {
     // Redis接続
     redis = new Redis({
       host: "localhost",
-      port: 6379,
+      port: 6380,
     });
 
     // Elasticsearch接続
