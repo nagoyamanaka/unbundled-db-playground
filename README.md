@@ -350,6 +350,22 @@ docker-compose logs kafka
 - [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
 - [Elasticsearch Guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
 
+## テスト
+
+### Unit
+
+```
+npm run test:unit
+```
+
+### Integration
+
+**docker compose down**でコンテナを止めること
+
+```
+npm run test:integration
+```
+
 ## 📝 ライセンス
 
 MIT

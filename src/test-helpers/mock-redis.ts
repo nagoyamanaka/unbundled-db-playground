@@ -4,7 +4,6 @@
  */
 
 import { vi } from "vitest";
-import type Redis from "ioredis";
 
 /**
  * Redis クライアントのモック
@@ -136,14 +135,14 @@ export function createMockRedis(): MockRedis {
 /**
  * DDT用: キャッシュ操作のテストケース
  */
-export interface CacheTestCase {
+export type CacheTestCase = {
   name: string;
   operation: "set" | "get" | "delete";
   key: string;
   value?: string;
   ttl?: number;
   expectedResult: any;
-}
+};
 
 export function generateCacheTestCases(): CacheTestCase[] {
   return [

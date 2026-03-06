@@ -13,10 +13,17 @@ import { createMockElasticsearch } from "@/test-helpers/mock-elasticsearch";
 import type { DebeziumChangeEvent } from "@/types/index";
 
 describe("Search Indexer Consumer", () => {
+  // ReturnType<typeof 関数名>
+  // その関数がreturn する値の型をそのまま型として取得する働き
+  // 今回だとmockEs:MockElasticsearchになる
+  // なぜMockElasticSearchと書かないか
+  // -> メリットは型の追従性(DRY)
   let mockEs: ReturnType<typeof createMockElasticsearch>;
 
   beforeEach(() => {
     mockEs = createMockElasticsearch();
+    // mockEs以外のグローバルモックがある場合or今後出る場合の保険として
+    // 全てのvitestMockを初期化
     vi.clearAllMocks();
   });
 
